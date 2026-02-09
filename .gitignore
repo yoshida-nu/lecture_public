@@ -3,7 +3,8 @@
 Thumbs.db
 
 # Editor
-.vscode/
+venv/
+.venv/
 *.swp
 
 # LaTeX
@@ -16,4 +17,3 @@ Thumbs.db
 # Python
 __pycache__/
 *.pyc
-venv/
