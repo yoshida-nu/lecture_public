@@ -1,0 +1,8 @@
+@startuml ユースケース図の例
+actor アクター1
+usecase 機能1
+usecase 機能2
+アクター1 -- 機能1
+アクター1 -- 機能2
+@enduml
+
