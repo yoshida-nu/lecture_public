@@ -1,0 +1,18 @@
+@startuml インターフェースの例
+interface Animal <<interface>> {
+    {abstract} + talk()
+}
+
+class Dog {
+    + talk()
+    + run()
+}
+
+class Frog {
+    + talk()
+    + swim()
+}
+
+Animal <|.. Dog
+Animal <|.. Frog
+@enduml
