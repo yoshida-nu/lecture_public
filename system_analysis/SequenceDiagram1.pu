@@ -1,0 +1,17 @@
+@startuml シーケンス図の例
+participant "A"
+participant "Aの母"
+participant "Aの妹"
+
+activate A
+A -> Aの母 : 弁当を頼む()
+activate Aの母
+Aの母 -> Aの妹 : 買い物を頼む()
+activate Aの妹
+Aの妹 -> Aの妹 : 買い物をする()
+activate Aの妹
+deactivate Aの妹
+deactivate Aの妹
+deactivate Aの母
+deactivate A
+@enduml

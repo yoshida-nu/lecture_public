@@ -1,0 +1,10 @@
+@startuml シーケンス図の例
+actor 顧客
+participant ": マネージャ" as マネージャ
+
+activate 顧客
+顧客 -> マネージャ : 開発する()
+activate マネージャ
+deactivate マネージャ
+deactivate 顧客
+@enduml

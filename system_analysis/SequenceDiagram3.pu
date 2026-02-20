@@ -1,0 +1,21 @@
+@startuml シーケンス図の例
+actor "Aさん : 会員" as Aさん
+participant ": ログイン画面" as ログイン画面
+participant ": ログイン処理" as ログイン処理
+participant ": 会員リスト" as 会員リスト
+
+activate Aさん
+Aさん -> ログイン画面 : ログイン情報を入力する(会員番号, パスワード)
+activate ログイン画面
+ログイン画面 -> ログイン処理 : ログインする(会員番号, パスワード)
+activate ログイン処理
+ログイン処理 -> 会員リスト : 会員情報\n = 会員情報を取得する(会員番号)
+activate 会員リスト
+会員リスト --> ログイン処理
+deactivate 会員リスト
+ログイン処理 -> ログイン画面 : 会員サービス画面へ遷移する()
+activate ログイン画面
+ログイン画面 -->> ログイン処理
+deactivate ログイン処理
+destroy ログイン画面
+@enduml
