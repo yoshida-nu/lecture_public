@@ -1,0 +1,21 @@
+﻿@startuml ユースケース図の例：商品購入システム
+left to right direction
+
+rectangle 商品購入システム {
+    package 顧客機能 {
+        usecase 商品を検索する
+        usecase 商品を購入する
+    }
+
+    package 管理者機能 {
+        usecase 商品情報を管理する
+    }
+}
+
+actor 顧客
+actor 管理者
+
+顧客 -- 商品を検索する
+顧客 -- 商品を購入する
+管理者 -- 商品情報を管理する
+@enduml

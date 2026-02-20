@@ -1,0 +1,15 @@
+﻿@startuml ユースケース図の例：ATMシステム
+left to right direction
+
+rectangle ATMシステム {
+    usecase 現金を引き出す
+    usecase 預金する
+    usecase 振り込む
+}
+
+actor 顧客
+
+顧客 -- 現金を引き出す
+顧客 -- 預金する
+顧客 -- 振り込む
+@enduml

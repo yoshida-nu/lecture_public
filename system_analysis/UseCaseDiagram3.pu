@@ -1,0 +1,24 @@
+@startuml ユースケース図の例：商品購入システム
+left to right direction
+
+rectangle 商品購入システム {
+    usecase 商品を検索する
+    usecase UC1 as "商品を購入する
+    --
+    extension points
+    支払方法"
+    usecase ログインする
+    usecase クレジットカード番号を登録する
+
+    note "Condition: 顧客が支払方法で「クレジットカード」を選択した場合\nExtension 支払方法" as extend1
+}
+
+actor 顧客
+
+顧客 -- 商品を検索する
+顧客 -- UC1
+顧客 -- ログインする
+UC1 ..> ログインする : <<include>>
+UC1 <.. extend1 : <<extend>>
+extend1 .. クレジットカード番号を登録する
+@enduml
