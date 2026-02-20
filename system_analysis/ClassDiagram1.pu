@@ -1,0 +1,15 @@
+@startuml Class Diagram Example
+class 会社 {
+    - 名前 : 文字列
+    - 住所 : 文字列
+    - 電話 : 電話番号
+    + 雇用する()
+}
+
+class 人 {
+    - 名前 : 文字列
+    + 出社する()
+}
+
+会社 "0..1" - "*" 人 : < 勤務する
+@enduml
