@@ -1,0 +1,16 @@
+@startuml ループの例
+participant ": 蔵書管理" as 蔵書管理
+participant ": 蔵書リスト" as 蔵書リスト
+
+activate 蔵書管理
+蔵書管理 -> 蔵書リスト : 蔵書数 = 蔵書数を取得する()
+activate 蔵書リスト
+蔵書リスト --> 蔵書管理
+deactivate 蔵書リスト
+
+group loop(蔵書数)
+    蔵書管理 -> 蔵書リスト : 蔵書を取得する(蔵書番号)
+    activate 蔵書リスト
+    deactivate 蔵書リスト
+end
+@enduml

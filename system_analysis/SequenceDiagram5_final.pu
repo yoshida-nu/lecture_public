@@ -1,0 +1,23 @@
+@startuml オプションの例
+participant ": 蔵書管理" as 蔵書管理
+participant ": 蔵書リスト" as 蔵書リスト
+participant "情報システム : 蔵書" as 情報システム
+participant ": ログ管理" as ログ管理
+
+activate 蔵書管理
+蔵書管理 -> 蔵書リスト : 書名 = 蔵書を取得する(1234) : 情報システム
+activate 蔵書リスト
+deactivate 蔵書リスト
+蔵書管理 -> 情報システム : 貸出状況 = 貸出中か調べる()
+activate 情報システム
+deactivate 情報システム
+
+opt 貸出状況=="貸出無し"
+  蔵書管理 -> 情報システム : 貸出状況を変更する("貸出中")
+  activate 情報システム
+  deactivate 情報システム
+  蔵書管理 -> ログ管理 : 貸出ログを記録する(1234, "貸出中")
+  activate ログ管理
+  deactivate ログ管理
+end
+@enduml
