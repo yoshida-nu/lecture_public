@@ -1,0 +1,23 @@
+@startuml シーケンス図の例
+participant ": 蔵書検索画面" as 蔵書検索画面
+participant ": 検索処理" as 検索処理
+participant ": 蔵書リスト" as 蔵書リスト
+participant ": 蔵書" as 蔵書
+
+
+activate 蔵書検索画面
+蔵書検索画面 -> 検索処理 : 蔵書を検索する(書名)
+activate 検索処理
+検索処理 -> 蔵書リスト : 蔵書数 = 蔵書数を取得する()
+activate 蔵書リスト
+deactivate 蔵書リスト
+
+group loop(蔵書数)
+    検索処理 -> 蔵書リスト : 蔵書を取得する(蔵書番号)
+    activate 蔵書リスト
+    deactivate 蔵書リスト
+    検索処理 -> 蔵書 : 取得した書名 = 書名を取得する()
+    activate 蔵書
+    deactivate 蔵書
+end
+@enduml
