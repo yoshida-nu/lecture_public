@@ -16,11 +16,11 @@ activate Aさんの会員情報
 Aさんの会員情報 --> ログイン処理
 deactivate Aさんの会員情報
 
-alt 認証結果 = OK
+alt 認証結果 == OK
     ログイン処理 -> ログイン画面 : 会員サービス画面へ遷移する()
     activate ログイン画面
     deactivate ログイン画面
-else 認証結果 = NG
+else 認証結果 == NG
     ログイン処理 -> ログイン画面 : 認証エラー画面へ遷移する()
     activate ログイン画面
     deactivate ログイン画面
