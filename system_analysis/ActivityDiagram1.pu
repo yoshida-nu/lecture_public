@@ -1,0 +1,13 @@
+@startuml アクティビティ図の例1
+start
+:アクションA;
+:アクションB;
+if () then ([Yes])
+    :アクションC1;
+    :アクションC2;
+else ([No])
+    :アクションD;
+endif
+:アクションE;
+stop
+@enduml

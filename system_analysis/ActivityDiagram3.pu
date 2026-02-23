@@ -1,0 +1,11 @@
+@startuml アクティビティ図の例3
+start
+:アクションA;
+fork
+    :アクションB1;
+fork again
+    :アクションB2;
+end fork
+:アクションC;
+stop
+@enduml

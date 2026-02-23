@@ -1,0 +1,12 @@
+@startuml アクティビティ図の例2
+start
+switch ()
+case ([条件A])
+    :アクションA1;
+case ([条件B])
+    :アクションB1;
+case ([それ以外])
+    :アクションZ;
+endswitch
+stop
+@enduml
