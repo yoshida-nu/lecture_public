@@ -1,0 +1,13 @@
+@startuml コンポーネント図の例
+left to right direction
+component 社員 <<component>>
+component 経費全体 <<subsystem>> {
+    component 経費 <<component>>
+    port " " as p1
+    interface 経費登録サービス as i1
+}
+
+社員 -(0- p1 : 経費登録サービス
+p1 -> i1 : <<delegation>>
+経費 - i1
+@enduml

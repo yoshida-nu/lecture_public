@@ -1,0 +1,18 @@
+@startuml パッケージ図の例
+
+package 窓口 {
+    class 顧客 {}
+}
+
+package 受付 {
+    class 受付銀行員 {}
+}
+
+package システム課 {
+    class 口座情報管理 {}
+    class 行内情報管理 {}
+}
+
+窓口 ..> 受付
+受付 ..> システム課
+@enduml
