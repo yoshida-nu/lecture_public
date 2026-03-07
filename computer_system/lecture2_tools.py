@@ -4,10 +4,10 @@ from fractions import Fraction
 import struct
 from typing import Tuple, Dict, Any, Optional
 
-def add_bits(a: str, b: str) -> str:
+def add_bits(a: str, b: str) -> None:
     """
     ビット列 a, b を加算し，
-    同じビット長で結果を返す（mod 2^n）
+    同じビット長で結果を出力（mod 2^n）
     """
     if len(a) != len(b):
         raise ValueError("bit lengths must be equal")
@@ -19,7 +19,7 @@ def add_bits(a: str, b: str) -> str:
 
     s = (x + y) % (1 << n)
 
-    return format(s, f"0{n}b")
+    print(format(s, f"0{n}b"))
 
 # ============================================================
 # 1) nビット符号付き整数（2の補数）
