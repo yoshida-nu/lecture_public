@@ -1,36 +1,25 @@
-# lecture2_tools.py
-# 第2回「数の表現（整数・負の数・小数）」 配布用ツール集（IDLE向け）
-#
-# ─────────────────────────────────────────────
-# 受講生向け：最短の使い方（重要）
-#
-# 1) この lecture2_tools.py をダウンロードして保存
-# 2) IDLE → File → New File で新規ファイルを作る
-# 3) その新規ファイルを lecture2_tools.py と「同じフォルダ」に保存（例：practice.py）
-# 4) practice.py に以下を書いて F5（Run Module）
-#
-#   from lecture2_tools import (
-#       show_signed_nbit_repr, show_bits_to_signed_int,
-#       show_ieee754, show_sum_demo
-#   )
-#
-#   show_signed_nbit_repr(-5, 8)                  # 整数→nビット（範囲内）
-#   show_signed_nbit_repr(130, 8, overflow=True)  # 整数→nビット（桁あふれ）
-#   show_bits_to_signed_int("11111011")           # ビット列→整数（2の補数）
-#
-#   show_ieee754(0.1, 64, frac_head=24)           # 倍精度の符号・指数・仮数
-#   show_ieee754(0.1, 32, frac_head=24)           # 単精度に丸めた結果（重要）
-#   show_sum_demo()                               # 0.1 + 0.2 デモ
-#
-# よくあるエラー：
-# ・ModuleNotFoundError：このファイルと practice.py が同じフォルダにありません．
-# ─────────────────────────────────────────────
-
 from __future__ import annotations
 
 from fractions import Fraction
 import struct
 from typing import Tuple, Dict, Any, Optional
+
+def add_bits(a: str, b: str) -> str:
+    """
+    ビット列 a, b を加算し，
+    同じビット長で結果を返す（mod 2^n）
+    """
+    if len(a) != len(b):
+        raise ValueError("bit lengths must be equal")
+
+    n = len(a)
+
+    x = int(a, 2)
+    y = int(b, 2)
+
+    s = (x + y) % (1 << n)
+
+    return format(s, f"0{n}b")
 
 # ============================================================
 # 1) nビット符号付き整数（2の補数）
