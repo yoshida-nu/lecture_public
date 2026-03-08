@@ -3,13 +3,42 @@ import math
 from dataclasses import dataclass
 from typing import Dict, Optional, Tuple, List
 
+def log_2(x):
+    print(math.log2(x))
+
+def ceil_log_2(x):
+    print(math.ceil(math.log2(x)))
+
+def self_information(p):
+    if p > 0:
+        I = -math.log2(p)
+        print(f"確率: {p} -> 自己情報量: {I}")
+    else:
+        print("確率は0より大きい必要があります。")
 
 def entropy(prob_list):
+    # 空リストチェック
+    if not prob_list:
+        raise ValueError("確率リストが空です")
+
+    # 各確率が 0～1 の範囲か確認
+    for p in prob_list:
+        if p < 0 or p > 1:
+            raise ValueError("確率は 0 以上 1 以下でなければなりません")
+
+    # 確率の合計が 1 か確認（数値誤差を考慮）
+    if not math.isclose(sum(prob_list), 1.0, rel_tol=1e-9, abs_tol=1e-12):
+        raise ValueError("確率の合計が 1 ではありません")
+
+    # エントロピー計算
     H = 0
     for p in prob_list:
         if p > 0:
             H += -p * math.log2(p)
-    return H
+
+    print(f"確率分布: {prob_list}")
+    print(f"エントロピー: {H}")
+    print()
 
 @dataclass
 class Node:
