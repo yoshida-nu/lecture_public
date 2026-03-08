@@ -8,7 +8,7 @@ import subprocess
 def show_unicode(ch):
     if len(ch) != 1:
         raise ValueError("1文字だけ入力してください")
-    print(f"{ord(ch):x}")
+    print(f"{ord(ch):04x}")
 
 def unicode_to_char(hex_str):
     code = int(hex_str, 16)
@@ -37,7 +37,7 @@ def mojibake_demo(s):
     # UTF-8 → Shift_JISとして復号
     b_utf8 = s.encode("utf-8")
     print("[UTF-8 → Shift_JIS]")
-    print("UTF-8バイト列:", b_utf8.hex())
+    print("UTF-8 の符号語:", b_utf8.hex())
 
     mojibake1 = b_utf8.decode("shift_jis", errors="replace")
     print("Shift_JISとして復号:", mojibake1)
@@ -46,7 +46,7 @@ def mojibake_demo(s):
     # Shift_JIS → UTF-8として復号
     b_sjis = s.encode("shift_jis")
     print("[Shift_JIS → UTF-8]")
-    print("Shift_JISバイト列:", b_sjis.hex())
+    print("Shift_JIS の符号語:", b_sjis.hex())
 
     mojibake2 = b_sjis.decode("utf-8", errors="replace")
     print("UTF-8として復号:", mojibake2)
