@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-# 同じ元波形に対して fs（サンプリング周波数）と bits（量子化ビット数）を変え，
-# 波形（グラフ）＋聴こえ方（WAV保存）を体験する．
-
 import os
 import platform
 import wave
@@ -9,6 +5,56 @@ import numpy as np
 import matplotlib.pyplot as plt
 import subprocess
 
+def show_unicode(ch):
+    if len(ch) != 1:
+        raise ValueError("1文字だけ入力してください")
+    print(f"{ord(ch):X}")
+
+def unicode_to_char(hex_str):
+    code = int(hex_str, 16)
+    print(chr(code))
+
+def utf8_hex(ch):
+    if len(ch) != 1:
+        raise ValueError("1文字だけ入力してください")
+    
+    b = ch.encode("utf-8")
+    print(b.hex())
+
+def utf8_to_char(hex_str):
+    try:
+        b = bytes.fromhex(hex_str)
+        ch = b.decode("utf-8")
+        print(ch)
+    except:
+        print("UTF-8として正しくありません")
+
+def mojibake_demo(s):
+
+    print("元の文字列:", s)
+    print()
+
+    # UTF-8 → Shift_JISとして復号
+    b_utf8 = s.encode("utf-8")
+    print("[UTF-8 → Shift_JIS]")
+    print("UTF-8バイト列:", b_utf8.hex())
+
+    mojibake1 = b_utf8.decode("shift_jis", errors="replace")
+    print("Shift_JISとして復号:", mojibake1)
+    print()
+
+    # Shift_JIS → UTF-8として復号
+    b_sjis = s.encode("shift_jis")
+    print("[Shift_JIS → UTF-8]")
+    print("Shift_JISバイト列:", b_sjis.hex())
+
+    mojibake2 = b_sjis.decode("utf-8", errors="replace")
+    print("UTF-8として復号:", mojibake2)
+
+
+# -*- coding: utf-8 -*-
+# 同じ元波形に対して fs（サンプリング周波数）と bits（量子化ビット数）を変え，
+# 波形（グラフ）＋聴こえ方（WAV保存）を体験する．
 
 # -----------------------------
 # 1) 元の音（基準信号）を作る
@@ -145,5 +191,3 @@ def run_experiment(fs_list, bits_list,
 
             path = os.path.join(out_dir, f"sound_fs{fs}_bits{bits}.wav")
             write_wav_mono_int16(path, x_play, fs)
-
-            
