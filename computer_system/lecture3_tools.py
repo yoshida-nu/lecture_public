@@ -8,7 +8,7 @@ import subprocess
 def show_unicode(ch):
     if len(ch) != 1:
         raise ValueError("1文字だけ入力してください")
-    print(f"{ord(ch):X}")
+    print(f"{ord(ch):x}")
 
 def unicode_to_char(hex_str):
     code = int(hex_str, 16)
