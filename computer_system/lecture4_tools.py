@@ -103,7 +103,7 @@ class Node:
     rep: str = ""                     # 部分木に含まれる最小アルファベット（タイブレーク用）
 
 
-def huffman(source: Dict[str, float]) -> Tuple[Dict[str, str], float]:
+def huffman(source: Dict[str, float]) -> None:
     """
     2元ハフマン符号（授業用・完全決定版）
     ルール：
@@ -176,7 +176,9 @@ def huffman(source: Dict[str, float]) -> Tuple[Dict[str, str], float]:
 
     # 平均符号長
     avg_len = sum(source[sym] * len(codebook[sym]) for sym in source.keys())
-    return codebook, avg_len
+    
+    print("符号語:", codebook)
+    print("平均符号長:", avg_len)
 
 
 
