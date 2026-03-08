@@ -1,5 +1,6 @@
 from __future__ import annotations
 import math
+import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from typing import Dict, Optional, Tuple, List
 
@@ -9,12 +10,39 @@ def log_2(x):
 def ceil_log_2(x):
     print(math.ceil(math.log2(x)))
 
-def self_information(p):
-    if p > 0:
-        I = -math.log2(p)
-        print(f"確率: {p} -> 自己情報量: {I}")
+def self_information1(p):
+    if p < 0 or p > 1:
+        print("確率は0以上1以下である必要があります。")
+        return
+
+    if p == 0:
+        print(f"確率: {p} -> 自己情報量: ∞")
+        return
+
+    if p == 1:
+        I = 0.0
     else:
-        print("確率は0より大きい必要があります。")
+        I = -math.log2(p)
+
+    print(f"確率: {p} -> 自己情報量: {I}")
+
+def plot_self_information():
+    # 確率の値を生成（0は対数が計算できないので避ける）
+    p_values = [i / 100 for i in range(1, 101)]
+
+    # 自己情報量を計算
+    I_values = [-math.log2(p) for p in p_values]
+
+    # グラフ描画
+    plt.figure()
+    plt.plot(p_values, I_values)
+
+    plt.xlabel("Probability p")
+    plt.ylabel("Self-information I(p)")
+    plt.title("Self-information")
+
+    plt.grid(True)
+    plt.show()
 
 def entropy(prob_list):
     # 空リストチェック
@@ -36,9 +64,35 @@ def entropy(prob_list):
         if p > 0:
             H += -p * math.log2(p)
 
-    print(f"確率分布: {prob_list}")
-    print(f"エントロピー: {H}")
+    print(f"確率分布 P: {prob_list}")
+    print(f"エントロピー H(P): {H}")
     print()
+
+def plot_binary_entropy():
+    # p1 の値（0 と 1 は log が計算できないので避ける）
+    p_values = [i / 1000 for i in range(1, 1000)]
+
+    # 2値エントロピー
+    H_values = [
+        -p * math.log2(p) - (1 - p) * math.log2(1 - p)
+        for p in p_values
+    ]
+
+    plt.figure()
+
+    # エントロピー曲線
+    plt.plot(p_values, H_values, label="Entropy")
+
+    # 最大エントロピー H=1 の線
+    plt.axhline(y=1, linestyle="--", label="Max entropy (H(0.5)=1)")
+
+    plt.xlabel("$p_1$")
+    plt.ylabel("$H(P)$")
+
+    plt.grid(True)
+    plt.legend()
+
+    plt.show()
 
 @dataclass
 class Node:
