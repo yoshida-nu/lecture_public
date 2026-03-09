@@ -1,6 +1,51 @@
 plain_space = 'abcdefghijklmnopqrstuvwxyz'
 cipher_space = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+def caesar_encrypt(plaintext, k=3):
+    print("平文:", plaintext)
+    print(f"鍵 k = {k}")
+    print()
+
+    print("文字  →  数値  →  +k後  →  暗号文字")
+    print("--------------------------------")
+
+    ciphertext = ""
+
+    for i in plaintext:
+        number = ord(i) - ord("a")
+        shifted = (number + k) % 26
+        cipher_char = chr(shifted + ord("a"))
+
+        print(f"{i}  →  {number:2}  →  {shifted:2}  →  {cipher_char.upper()}")
+
+        ciphertext += cipher_char.upper()
+
+    print("--------------------------------")
+    print("暗号文:", ciphertext)
+
+
+def caesar_decrypt(ciphertext, k=3):
+    print("暗号文:", ciphertext)
+    print(f"鍵 k = {k}")
+    print()
+
+    print("文字  →  数値  →  -k後  →  平文文字")
+    print("--------------------------------")
+
+    plaintext = ""
+
+    for i in ciphertext:
+        number = ord(i) - ord("A")
+        shifted = (number - k) % 26
+        plain_char = chr(shifted + ord("A"))
+
+        print(f"{i}  →  {number:2}  →  {shifted:2}  →  {plain_char.lower()}")
+
+        plaintext += plain_char.lower()
+
+    print("--------------------------------")
+    print("平文:", plaintext)
+
 # シーザー暗号の復号
 def caesar_dec(c, k):
     n = len(c)
