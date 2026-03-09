@@ -132,7 +132,11 @@ def huffman(source: Dict[str, float]) -> None:
     if len(nodes) == 1:
         only = nodes[0].symbol
         assert only is not None
-        return {only: "0"}, 1.0
+        codebook = {only: "0"}
+        avg_len = 1.0
+        print("符号語:", codebook)
+        print("平均符号長:", avg_len)
+        return
 
     def key(n: Node):
         # ここが授業用の決定規則：確率→代表記号（最小アルファベット）
