@@ -10,7 +10,7 @@ def log_2(x):
 def ceil_log_2(x):
     print(math.ceil(math.log2(x)))
 
-def self_information1(p):
+def self_information(p):
     if p < 0 or p > 1:
         print("確率は0以上1以下である必要があります。")
         return
