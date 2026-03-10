@@ -4,6 +4,34 @@ from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa, ec
 
+def bit_op(a, b, op):
+    n = max(len(a), len(b))
+    a = a.zfill(n)
+    b = b.zfill(n)
+
+    result = ""
+
+    for i in range(n):
+        A = int(a[i])
+        B = int(b[i])
+
+        if op == "AND":
+            r = A & B
+        elif op == "OR":
+            r = A | B
+        elif op == "XOR":
+            r = A ^ B
+        elif op == "NAND":
+            r = 1 - (A & B)
+        elif op == "NOR":
+            r = 1 - (A | B)
+        else:
+            raise ValueError("Unknown operation")
+
+        result += str(r)
+
+    return result
+
 # ユークリッドの互除法
 def gcd(a, b):
     if a < b:
@@ -116,8 +144,8 @@ def encrypt(plaintext, public_key):
     print("========================================")
     print(f"平文 m = {plaintext}")
     print(f"公開鍵 (e, n) = ({e}, {n})")
-    print("暗号化の式: c = m^e mod n")
-    print(f"          = {plaintext}^{e} mod {n}")
+    print("暗号化の式: c = m^e % n")
+    print(f"          = {plaintext}^{e} % {n}")
 
     ciphertext = pow(plaintext, e, n)
 
@@ -133,8 +161,8 @@ def decrypt(ciphertext, private_key):
     print("========================================")
     print(f"暗号文 c = {ciphertext}")
     print(f"秘密鍵 (d, n) = ({d}, {n})")
-    print("復号の式: m = c^d mod n")
-    print(f"        = {ciphertext}^{d} mod {n}")
+    print("復号の式: m = c^d % n")
+    print(f"        = {ciphertext}^{d} % {n}")
 
     plaintext = pow(ciphertext, d, n)
 
