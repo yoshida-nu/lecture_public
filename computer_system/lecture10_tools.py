@@ -6,7 +6,7 @@ def caesar_encrypt(plaintext, k=3):
     print(f"鍵 k = {k}")
     print()
 
-    print("文字  →  数値  →  +k後  →  暗号文字")
+    print("平文文字  →  番号  →  番号 + k  →  暗号文字")
     print("--------------------------------")
 
     ciphertext = ""
@@ -29,7 +29,7 @@ def caesar_decrypt(ciphertext, k=3):
     print(f"鍵 k = {k}")
     print()
 
-    print("文字  →  数値  →  -k後  →  平文文字")
+    print("暗号文文字  →  番号  →  番号 - k  →  復号文文字")
     print("--------------------------------")
 
     plaintext = ""
@@ -44,7 +44,7 @@ def caesar_decrypt(ciphertext, k=3):
         plaintext += plain_char.lower()
 
     print("--------------------------------")
-    print("平文:", plaintext)
+    print("復号文:", plaintext)
 
 # シーザー暗号の復号
 def caesar_dec(c, k):
