@@ -1,0 +1,13 @@
+@startuml Class Diagram 2
+
+class Course {
+    - title
+}
+
+class Faculty {
+    - name
+}
+
+Faculty -- "1..*" Course
+
+@enduml

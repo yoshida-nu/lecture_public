@@ -1,0 +1,16 @@
+@startuml Class Diagram
+
+abstract Character {
+  name: String
+}
+
+class Warrior {
+  - weapon: String
+  + attack()
+  + charge()
+}
+
+Character <|-- Warrior
+
+@enduml
+
