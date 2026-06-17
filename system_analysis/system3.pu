@@ -1,0 +1,23 @@
+@startuml Sequence Diagram
+actor ": 利用者" as 利用者
+participant ": 商品検索" as 商品検索
+participant ": 商品リスト" as 商品リスト
+participant ": 商品" as 商品
+利用者 -> 商品検索 : 商品を検索する(商品名)
+activate 商品検索
+商品検索 -> 商品リスト : 商品数 = 商品数を取得する()
+activate 商品リスト
+deactivate 商品リスト
+商品検索 -> 商品リスト : 商品を取得する(商品番号)
+activate 商品リスト
+deactivate 商品リスト
+商品検索 -> 商品 : 取得した商品名 = 商品名を取得する()
+activate 商品
+deactivate 商品
+商品検索 -> 商品 : 商品情報を取得する()
+activate 商品
+deactivate 商品
+商品検索 --> 利用者 : 商品情報
+deactivate 商品検索
+@enduml
+

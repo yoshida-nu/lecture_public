@@ -1,11 +1,11 @@
 @startuml Class Diagram
 
 abstract Character {
-  name: String
+  name
 }
 
 class Warrior {
-  - weapon: String
+  - weapon
   + attack()
   + charge()
 }
