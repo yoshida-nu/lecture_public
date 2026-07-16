@@ -1,4 +1,4 @@
-@startuml Class Diagram 2
+@startuml Class Diagram
 
 class Course {
     - title
